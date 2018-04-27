@@ -1,40 +1,45 @@
 
-require_relative '../lib/problem1.rb'
+require_relative '../lib/problem2.rb'
 
-describe Counter do
-  describe '#add_id' do
-    it 'confirm add id' do
-      counter = Counter.new
-      counter.add_id(2)
-      counter.add_id(3)
-      counter.add_id(3)
-      expect(counter.id_list).to eq [2, 3, 3]
+describe Child do
+  describe '#input_tall' do
+    it 'input less' do
+      child = Child.new
+      child.input_tall('le', 120.3)
+      child.input_tall('le', 119.3)
+      child.input_tall('le', 121.3)
+      expect(child.less_tall).to eq 119.3
+    end
+
+    it 'input greater' do
+      child = Child.new
+      child.input_tall('ge', 120.3)
+      child.input_tall('ge', 119.3)
+      child.input_tall('ge', 121.3)
+      expect(child.greater_tall).to eq 121.3
     end
   end
 
-  describe '#output_frequent_id' do
-    it 'output frequent id for one answer' do
-      counter = Counter.new
-      [1, 2, 3, 3, 4, 3, 4].each do |i|
-        counter.add_id(i)
-      end
-      expect(counter.output_frequent_id).to eq '3'
+  describe '#output_tall' do
+    it 'output1' do
+      child = Child.new
+      child.input_tall('le', 120.3)
+      child.input_tall('ge', 115.7)
+      child.input_tall('le', 122.0)
+      child.input_tall('ge', 116.9)
+      child.input_tall('le', 119.1)
+      child.input_tall('le', 117.6)
+      expect(child.output_tall).to eq '116.9 117.6'
     end
 
-    it 'output frequent id for many answer' do
-      counter = Counter.new
-      [1, 3, 3, 3, 4, 2, 4, 2, 2, 4].each do |i|
-        counter.add_id(i)
-      end
-      expect(counter.output_frequent_id).to eq '2 3 4'
-    end
-
-    it 'output frequent id for many answer' do
-      counter = Counter.new
-      [1, 32, 3, 34, 5, 6, 27, 8, 9, 10, 11].each do |i|
-        counter.add_id(i)
-      end
-      expect(counter.output_frequent_id).to eq '1 3 5 6 8 9 10 11 27 32 34'
+    it 'output2' do
+      values = [['ge', 121.7], ['ge', 125.0], ['le', 162.4], ['le', 153.5],
+                ['ge', 119.6], ['le', 182.4], ['le', 149.4], ['le', 192.7],
+                ['le', 168.8], ['ge', 110.0], ['le', 180.9], ['ge', 119.9],
+                ['le', 152.7], ['le', 180.8], ['le', 152.4]]
+      child = Child.new
+      values.each { |pattern, tall| child.input_tall(pattern, tall) }
+      expect(child.output_tall).to eq '125.0 149.4'
     end
   end
 end

@@ -1,30 +1,27 @@
 
-class Counter
-  attr_reader :id_list
-  def initialize
-    @id_list = []
+class Child
+  attr_reader :less_tall, :greater_tall
+  def input_tall(pattern, tall)
+    if pattern == 'ge'
+      input_greater_than(tall)
+    elsif pattern == 'le'
+      input_less_than(tall)
+    else
+      raise 'no available pattern'
+    end
   end
 
-  def add_id(id)
-    @id_list.push(id)
-  end
-
-  def output_frequent_id
-    find_frequent_ids.sort.join(' ')
+  def output_tall
+    "#{@greater_tall} #{@less_tall}"
   end
 
   private
 
-  def find_frequent_ids
-    id_count_display = {}
-    @id_list.group_by { |i| i }.each do |id, ids|
-      if id_count_display[ids.count]
-        id_count_display[ids.count].push(id)
-      else
-        id_count_display[ids.count] = [id]
-      end
-    end
+  def input_greater_than(tall)
+    @greater_tall = tall if !@greater_tall || @greater_tall < tall
+  end
 
-    id_count_display.sort.reverse.first[1]
+  def input_less_than(tall)
+    @less_tall = tall if !@less_tall || tall < @less_tall
   end
 end
