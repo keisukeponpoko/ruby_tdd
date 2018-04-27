@@ -1,0 +1,6 @@
+.idea
+.bundle
+vendor
+
+ruby_tdd.iml
+Gemfile.lock
