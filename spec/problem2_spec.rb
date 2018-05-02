@@ -2,9 +2,10 @@
 require_relative '../lib/problem2.rb'
 
 describe Child do
+  let(:child) { Child.new }
+
   describe '#input_tall' do
     it 'input less' do
-      child = Child.new
       child.input_tall('le', 120.3)
       child.input_tall('le', 119.3)
       child.input_tall('le', 121.3)
@@ -12,7 +13,6 @@ describe Child do
     end
 
     it 'input greater' do
-      child = Child.new
       child.input_tall('ge', 120.3)
       child.input_tall('ge', 119.3)
       child.input_tall('ge', 121.3)
@@ -22,7 +22,6 @@ describe Child do
 
   describe '#output_tall' do
     it 'output1' do
-      child = Child.new
       child.input_tall('le', 120.3)
       child.input_tall('ge', 115.7)
       child.input_tall('le', 122.0)
@@ -37,7 +36,6 @@ describe Child do
                 ['ge', 119.6], ['le', 182.4], ['le', 149.4], ['le', 192.7],
                 ['le', 168.8], ['ge', 110.0], ['le', 180.9], ['ge', 119.9],
                 ['le', 152.7], ['le', 180.8], ['le', 152.4]]
-      child = Child.new
       values.each { |pattern, tall| child.input_tall(pattern, tall) }
       expect(child.output_tall).to eq '125.0 149.4'
     end

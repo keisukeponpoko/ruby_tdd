@@ -2,9 +2,10 @@
 require_relative '../lib/problem1.rb'
 
 describe Counter do
+  let(:counter) { Counter.new }
+
   describe '#add_id' do
     it 'confirm add id' do
-      counter = Counter.new
       counter.add_id(2)
       counter.add_id(3)
       counter.add_id(3)
@@ -14,7 +15,6 @@ describe Counter do
 
   describe '#output_frequent_id' do
     it 'output frequent id for one answer' do
-      counter = Counter.new
       [1, 2, 3, 3, 4, 3, 4].each do |i|
         counter.add_id(i)
       end
@@ -22,7 +22,6 @@ describe Counter do
     end
 
     it 'output frequent id for many answer' do
-      counter = Counter.new
       [1, 3, 3, 3, 4, 2, 4, 2, 2, 4].each do |i|
         counter.add_id(i)
       end
@@ -30,7 +29,6 @@ describe Counter do
     end
 
     it 'output frequent id for many answer' do
-      counter = Counter.new
       [1, 32, 3, 34, 5, 6, 27, 8, 9, 10, 11].each do |i|
         counter.add_id(i)
       end
